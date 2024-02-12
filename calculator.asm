@@ -15,36 +15,54 @@ LOOP    LEA R0, PROMPT  ; Print the prompt.
 IFA     LD  R3, ASCIIA
         ADD R3, R0, R3
         BRnp ELIFS
-        ; TODO: Complete this case.
-
+        JSR POP; TODO: Complete this case.
+        ADD R4, R2, #0
+        JSR POP
+        ADD R2, R2, R4
+        JSR PUSH
         BRnzp ENDIF
 
         ; Else if the command is an 's'...
 ELIFS   LD  R3, ASCIIS
         ADD R3, R0, R3
         BRnp ELIFN
-        ; TODO: Complete this case.
-
+        JSR POP; TODO: Complete this case.
+        NOT R2, R2
+        ADD R4, R2, #1
+        JSR POP
+        ADD R2, R2, R4
+        JSR PUSH
         BRnzp ENDIF
 
         ; Else if the command is an 'n'...
 ELIFN   LD  R3, ASCIIN
         ADD R3, R0, R3
         BRnp ELIFQ
-        ; TODO: Complete this case.
-
+        JSR POP; TODO: Complete this case.
+        NOT R2, R2
+        ADD R2, R2, #1
+        JSR PUSH
         BRnzp ENDIF
 
         ; Else if the command is a 'q'...
 ELIFQ   LD  R3, ASCIIQ
         ADD R3, R0, R3
         BRnp ELSE
-        ; TODO: Complete this case.
-
-        BRnzp ENDIF
+        LEA R0, ENDSTR
+        PUTS
+        LEA R0, RESSTR
+        PUTS
+        JSR POP ; TODO: Complete this case.
+        ADD R0, R2, #0
+        JSR OUTI
+        HALT
 
         ; Else, assume the command is '#'...
-ELSE    ; TODO: Complete this case.
+ELSE    JSR GETI
+        ADD R2, R0, #0
+        JSR PUSH
+        ADD R0, R2, #0
+        JSR OUTI; TODO: Complete this case.
 
 
 ENDIF   GETC            ; Consume the newline.

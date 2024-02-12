@@ -48,8 +48,8 @@ ELIFN   LD  R3, ASCIIN
 ELIFQ   LD  R3, ASCIIQ
         ADD R3, R0, R3
         BRnp ELSE
-        LEA R0, ENDSTR
-        PUTS
+        GETC            ; Consume the newline.
+        OUT
         LEA R0, RESSTR
         PUTS
         JSR POP ; TODO: Complete this case.

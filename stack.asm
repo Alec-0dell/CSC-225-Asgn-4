@@ -13,8 +13,8 @@
 ;  Returns the stack pointer in R1.
 ;  TODO: Implement this subroutine.
 PUSH:
-    STR R2, R1, #0
     ADD R1, R1 #-1
+    STR R2, R1, #0
     RET
 
 ; Pops one element off of the stack.
@@ -22,8 +22,8 @@ PUSH:
 ;  Returns the stack pointer in R1, popped element in R2.
 ;  TODO: Implement this subroutine.
 POP
-    ADD R1, R1, #1
     LDR R2, R1, #0
+    ADD R1, R1, #1
     RET
 
 STACK .BLKW #16

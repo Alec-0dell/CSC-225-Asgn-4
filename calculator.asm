@@ -74,8 +74,6 @@ DONE    LEA R0, RESSTR  ; Pop and print an integer.
         JSR POP
         ADD R0, R2, #0
         JSR OUTI
-        LEA R0, ENDSTR
-        PUTS
         HALT            ; Halt.
 
 

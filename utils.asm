@@ -46,6 +46,8 @@ INT ADD R0, R0, #-9
 ;  Returns no values.
 ;  TODO: Implement this subroutine.
 OUTI:
+    ST R3, REGT
+    ST R0, REGZ
     ADD R0, R0, #0
     BRn NEGO
     ADD R0, R0, #3
@@ -53,6 +55,8 @@ OUTI:
     ADD R0, R0, #15
     ADD R0, R0, #15
     OUT
+    LD R0, REGZ
+    LD R3, REGT
     RET
 NEGO 
     NOT R3, R0
@@ -65,11 +69,15 @@ NEGO
     ADD R0, R3, R0
     ADD R0, R0, #3
     OUT
+    LD R0, REGZ
+    LD R3, REGT
     RET
     
 
 
 ERROR .STRINGZ "Please enter an integer from { -9 : 9 } using the ( - ) for negative numbers"
+REGZ .FILL x0
+REGT .FILL x0
 
 
         .END
